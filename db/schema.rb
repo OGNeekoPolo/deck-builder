@@ -10,17 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209154944) do
+ActiveRecord::Schema.define(version: 20171209164008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cards", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "element"
+    t.string "type"
+    t.string "rarity"
+    t.boolean "extra_deck"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "deck_id"
+    t.index ["deck_id"], name: "index_cards_on_deck_id"
+  end
+
   create_table "decks", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.boolean "play_ready"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "deck_brand"
+    t.boolean "ready_for_play", default: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_decks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,7 +45,8 @@ ActiveRecord::Schema.define(version: 20171209154944) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "deck_type"
   end
 
+  add_foreign_key "cards", "decks"
+  add_foreign_key "decks", "users"
 end

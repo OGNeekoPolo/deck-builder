@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  element: MyString
+  type: 
+  rarity: MyString
+  extra_deck: false
+
+two:
+  title: MyString
+  description: MyText
+  element: MyString
+  type: 
+  rarity: MyString
+  extra_deck: false

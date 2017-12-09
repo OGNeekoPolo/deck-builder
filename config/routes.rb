@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cards
   get '/login', to: 'users#index', as: :login
 
   post 'login', to: 'sessions#create'
