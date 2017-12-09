@@ -1,0 +1,20 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  %a.navbar-brand{:href => "#"} Yu-Gi-Oh Collections
+  %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarNav.collapse.navbar-collapse
+    %ul.navbar-nav
+      %li.nav-item.active
+        %a.nav-link{:href => "#"}
+          Home
+          %span.sr-only (current)
+      - if session[:current_user_id]
+        %li.nav-item
+          %a.nav-link{:href => "/add_deck"} Add Decks
+        %li.nav-item
+          %a.nav-link{:href => "#"} Pricing
+        %li.nav-item
+          = link_to('Logout', logout_path, data: { confirm: 'Are you sure you want to logout?'}, class: 'nav-link')
+      - else
+        %li.nav-item
+          %a.nav-link{:href => "/login"} Login
